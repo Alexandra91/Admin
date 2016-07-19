@@ -1,4 +1,4 @@
-package com.steps.serenity;
+package com.steps;
 
 import com.pages.DictionaryPage;
 import net.thucydides.core.annotations.Step;
