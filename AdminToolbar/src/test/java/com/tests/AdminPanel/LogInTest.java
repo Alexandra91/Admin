@@ -1,6 +1,7 @@
 package com.tests.AdminPanel;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
+import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
@@ -13,10 +14,10 @@ import com.steps.AdminPanel.LogInSteps;
 
 //@RunWith(SerenityRunner.class)
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="tests/magento.csv")
+@UseTestDataFrom(value="src/test/resources/tests/magentoAdmin.csv")
 public class LogInTest {
 
-//	@Managed(uniqueSession = false)
+	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 	
 	@Steps
@@ -29,7 +30,7 @@ public class LogInTest {
 	@Before
 	public void setUpTestData(){
 		
-//		baseURL = "http://admintoolbar-qa-ee114.evozon.com/admin";
+		//baseURL = "http://admintoolbar-qa-ee114.evozon.com/admin";
 		username = "admin";
 		password = "admin123";
 	}
