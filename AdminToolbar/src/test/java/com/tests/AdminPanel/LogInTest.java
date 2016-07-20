@@ -30,9 +30,7 @@ public class LogInTest {
 	@Before
 	public void setUpTestData(){
 		
-		//baseURL = "http://admintoolbar-qa-ee114.evozon.com/admin";
-		username = "admin";
-		password = "admin123";
+
 	}
 	
 	@Test
