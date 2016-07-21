@@ -40,7 +40,7 @@ public class LogInPage extends PageObject {
 		}
 		
 	    public void checkPageText(String text){
-	    	waitABit(200);
+	    	waitABit(2000);
 	    	boolean found= false;
 	    	element(pageText).waitUntilVisible();
 	    	if(pageText.getText().contains(text)){
