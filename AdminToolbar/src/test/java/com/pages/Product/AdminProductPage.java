@@ -13,6 +13,7 @@ public class AdminProductPage extends AbstractPage {
 	
 	public void clickAdminTab(){
 		element(adminTab).waitUntilVisible();
+		waitABit(200);
 		adminTab.click();
 	}
 	
