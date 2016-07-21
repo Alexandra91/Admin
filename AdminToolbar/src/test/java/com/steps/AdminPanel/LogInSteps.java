@@ -38,7 +38,8 @@ public class LogInSteps extends ScenarioSteps {
 	}
 
 	@StepGroup
-	public void login_magentoAdmin(String user, String pass) {
+	public void login_magentoAdmin(String URL, String user, String pass) {
+		navigateTo(URL);
 		user(user);
 		password(pass);
 		connect();

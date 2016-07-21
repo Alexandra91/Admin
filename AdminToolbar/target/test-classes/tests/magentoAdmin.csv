@@ -1,7 +1,7 @@
-baseURL
-http://admintoolbar-qa-ee114.evozon.com/admin
-http://admintoolbar-qa-ee112.evozon.com/admin
-http://admintoolbar-qa-ce191.evozon.com/admin
-http://admintoolbar-qa-ce190.evozon.com/admin
-http://admintoolbar-qa-ce181.evozon.com/admin
-http://admintoolbar-qa-ce180.evozon.com/admin
+baseURL,username,password
+http://admintoolbar-qa-ee114.evozon.com/admin,admin,admin123
+http://admintoolbar-qa-ee112.evozon.com/admin,admin,admin123
+http://admintoolbar-qa-ce191.evozon.com/admin,admin,admin123
+http://admintoolbar-qa-ce190.evozon.com/admin,admin,admin123
+http://admintoolbar-qa-ce181.evozon.com/admin,admin,admin123
+http://admintoolbar-qa-ce180.evozon.com/admin,admin,admin123
