@@ -43,8 +43,7 @@ public void dataSetup(){
 
 @Test
 public void tc001AdminProductTest(){
-    logInSteps.navigateTo(baseURL);
-    logInSteps.login_magentoAdmin(user, pass);
+    logInSteps.login_magentoAdmin(user, pass,baseURL);
 	adminProductSteps.navigateTo(productLink);
 	adminProductSteps.clickAdminTab();
 	
