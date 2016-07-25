@@ -27,6 +27,7 @@ public class LogInPage extends PageObject {
 	    public void enter_user(String keyword) {
 	        loginUser.type(keyword);
 	    }
+	    
 	    public void enter_pass(String keyword) {
 	        loginPass.type(keyword);
 	    }
@@ -34,10 +35,6 @@ public class LogInPage extends PageObject {
 	    public void press_login() {
 	        loginButton.click();
 	    }
-	    
-		public void navigateTo(String URL) {
-			getDriver().get(URL);
-		}
 		
 	    public void checkPageText(String text){
 	    	waitABit(200);

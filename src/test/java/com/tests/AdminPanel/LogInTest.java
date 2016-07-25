@@ -16,7 +16,7 @@ import com.steps.AdminPanel.LogInSteps;
 @UseTestDataFrom(value="src/test/resources/tests/magentoAdmin.csv")
 public class LogInTest {
 
-	@Managed(uniqueSession = false)
+	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 	
 	@Steps
