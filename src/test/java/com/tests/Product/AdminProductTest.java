@@ -16,8 +16,8 @@ import net.thucydides.junit.annotations.UseTestDataFrom;
 
 //@RunWith(SerenityRunner.class)
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value = "src/test/resources/tests/productLinks.csv")
-// @UseTestDataFrom(value="src/test/resources/tests/magentoAdmin.csv")
+@UseTestDataFrom(value="src/test/resources/tests/adminTabLinks.csv")
+
 
 public class AdminProductTest {
 
@@ -33,7 +33,7 @@ public class AdminProductTest {
 
 	@Before
 	public void dataSetup() {
-		baseURL = "http://admintoolbar-qa-ce191.evozon.com/admin";
+		//baseURL = "http://admintoolbar-qa-ce191.evozon.com/admin";
 		user = "admin";
 		pass = "admin123";
 		// productLink="http://admintoolbar-qa-ce191.evozon.com/plaid-cotton-shirt.html";
@@ -42,11 +42,11 @@ public class AdminProductTest {
 
 	@Test
 	public void tc001AdminProductTest() {
-		
-		System.out.println("baseURL: " + baseURL);
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
 		adminProductSteps.navigateTo(productLink);
 		adminProductSteps.clickAdminTab();
-
+		adminProductSteps.switchToNewestOpenedTab();
+	    adminProductSteps.verifyStoreView("Default Values");	     
+	   
 	}
 }
