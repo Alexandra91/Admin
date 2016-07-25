@@ -12,5 +12,10 @@ public class AbstractSteps extends ScenarioSteps{
 	public void navigateTo(String URL){
 		abstractPage.navigateToURL(URL);
 	}
+	
+	@Step
+	public String switchToNewestOpenedTab(){
+		return abstractPage.switchToNewestOpenedTab();
+	}
 
 }
