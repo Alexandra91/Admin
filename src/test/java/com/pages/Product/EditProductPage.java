@@ -1,13 +1,9 @@
 package com.pages.Product;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
 
+import java.util.List;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -15,7 +11,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 
 public class EditProductPage extends PageObject {
 
-	@FindBy(css=".desktop-template [data-fragment='editproduct']")
+	@FindBy(css=".desktop-template  [data-fragment='editproduct'] .toolbar-label")
 	private WebElement editProduct;
 	
 	@FindBy(css="[class='url-target-link']")
@@ -33,27 +29,27 @@ public class EditProductPage extends PageObject {
 	@FindBy(css = "[id*='itemDataURL']")
 	private WebElementFacade URLkeyField;
 
-	@FindBy(css = "[class='ui-datepicker-month']")
-	private WebElement calendarTitle;
-
 	@FindBy(css = "[name='news_from_date']")
-	private WebElement calendarNewFromDate;
-
-	@FindBy(css = "[data-handler='prev']")
-	private WebElement prevDate;
-
-	@FindBy(css = "[data-handler='next']")
-	private WebElement nextDate;
-
+	private WebElement productNewFromDate;
+	
 	@FindBy(css = "[name='news_to_date']")
-	private WebElement calendarNewToDate;
+	private WebElement productNewToDate;
 
-	@FindBy(css = "")
-	private WebElement statusDropdown;
-
-	@FindBy(css = "")
-	private WebElement visibilityDropdown;
-
+//	public void visibilityDropdown(String option) {
+//	       // Open the dropdown so the options are visible
+//	        getDriver().findElement(By.cssSelector(selector)).click();
+//	        // Get all of the options
+//	        List<WebElement> options = getDriver().findElements(By.cssSelector(selector));
+//	        // Loop through the options and select the one that matches
+//	        for (WebElement opt : options) {
+//	            if (opt.getText().equals(option)) {
+//	                opt.click();
+//	                return;
+//	            }
+//	        }
+//	        throw new NoSuchElementException("Can't find " + option + " in dropdown");
+//	}
+	
 	@FindBy(css = "[for='cache-box']")
 	private WebElement refreshCacheCheckBox;
 
@@ -65,8 +61,13 @@ public class EditProductPage extends PageObject {
 	
 	@FindBy(css = "[class='close-tab-container']")
 	private WebElement closeButton;
+	
+    @FindBy(css="")
+	private WebElement successMessage;
 
     public void pressEditProductTab() {
+    	element(editProduct).waitUntilVisible();
+		waitABit(2000);
     	editProduct.click();
     }
 	
@@ -79,7 +80,7 @@ public class EditProductPage extends PageObject {
     }
     
     public void fillDescriptionField(String keyword) {
-    	descriptionField.type(keyword);
+    	descriptionField.sendKeys(keyword);
     }
     
 	public void fillShortDescriptionField(String keyword) {
@@ -89,53 +90,15 @@ public class EditProductPage extends PageObject {
     public void enterURLkeyField(String keyword) {
     	URLkeyField.type(keyword);
     }
+
+    public void enterStartDate() {
+    	productNewFromDate.click();
+    }
     
-	@FindBy(css="")
-	private WebElement successMessage;
-	
-	public void setDate(int month, int day, int year) throws ParseException {
-
-		Calendar calNew = Calendar.getInstance();
-		SimpleDateFormat sdfNew = new SimpleDateFormat("dd/MM/yyyy");
-		calNew.setTime(sdfNew.parse("1/" + String.valueOf(month) + "/"
-				+ String.valueOf(year)));
-
-		Calendar cal = Calendar.getInstance();
-		do {
-			element(calendarTitle).waitUntilVisible();
-			String MandY = calendarTitle.getText();
-			SimpleDateFormat sdf = new SimpleDateFormat("MMM, yyyy dd");
-			System.out.println(MandY);
-			cal.setTime(sdf.parse(MandY + " 1"));
-
-			if (cal.compareTo(calNew) == -1) {
-				nextDate.click();
-			}
-			if (cal.compareTo(calNew) == 1) {
-				prevDate.click();
-			}
-		} while (cal.compareTo(calNew) != 0);
-
-		List<WebElement> days = getDriver()
-				.findElements(
-						By.cssSelector("[class='ui-state-default']"));
-		for (WebElement currentDay : days) {
-			if (currentDay.getText().toLowerCase()
-					.equals(String.valueOf(day).toLowerCase()))
-				currentDay.click();
-		}
-	}
-	
-	public void enterStartDate() {
-		element(calendarNewFromDate).waitUntilVisible();
-		calendarNewFromDate.click();
-	}
-	
-	public void enterEndDate() {
-		element(calendarNewToDate).waitUntilVisible();
-		calendarNewToDate.click();
-	}
-	
+    public void enterEndDate() {
+    	productNewToDate.click();
+    }
+    
     public void checkCacheCheckBox() {
     	refreshCacheCheckBox.click();
     }
@@ -152,6 +115,20 @@ public class EditProductPage extends PageObject {
     	closeButton.click();
     }
     
+	public void visibilityDropdown(String text) {
+		String selectedValue = getDriver().findElement(By.cssSelector("div[id*='itemDataVisibility  '] p>span.select-value")).getText();
+		List<WebElement> options = getDriver().findElements(By.cssSelector("[id*='itemDataVisibility'] ul>li"));
+		if (selectedValue.contains(text)) {
+		} else {
+			for (WebElement webElement : options) {
+				if (webElement.getText().contains(text)) {
+					webElement.click();
+					break;
+				}
+			}
+		}
+	}
+	
     public void checkSaveButton(String mesage){
 		boolean found= false;
 		if(successMessage.getText().equals(mesage)){

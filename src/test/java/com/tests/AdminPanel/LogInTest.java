@@ -11,25 +11,24 @@ import org.openqa.selenium.WebDriver;
 
 import com.steps.AdminPanel.LogInSteps;
 
-//@RunWith(SerenityRunner.class)
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="src/test/resources/tests/magentoAdmin.csv")
+@UseTestDataFrom(value = "src/test/resources/tests/magentoAdmin.csv")
 public class LogInTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
-	
+
 	@Steps
 	public LogInSteps loginUser;
-	
+
 	private String baseURL;
 	private String username;
 	private String password;
-	
+
 	@Test
 	public void login_MagentoAdmin() {
-//		loginUser.navigateTo(baseURL);
-		loginUser.login_magentoAdmin(baseURL,username,password);
+		// loginUser.navigateTo(baseURL);
+		loginUser.login_magentoAdmin(baseURL, username, password);
 		loginUser.checkPageText("Dashboard");
 	}
 }
