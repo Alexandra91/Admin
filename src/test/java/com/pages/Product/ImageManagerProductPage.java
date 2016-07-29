@@ -18,101 +18,68 @@ public class ImageManagerProductPage extends AbstractPage {
 	@FindBy(css=".desktop-template a[data-fragment='imagemanager']")
 	private WebElement imageManagerTab;
 	
-	@FindBy(css=".header-subtitle")
-	private WebElement imageTabDescription;
-	
-	@FindBy(css="div.browse-holder .browse-button.browse-picturesText")
-	private WebElement browseButton;
-	
+		
     @FindBy(css="#close-button")   
     private WebElement closeButton;
     
     @FindBy(id="image-cache")
     private WebElement cacheCheckbox;
     
-    @FindBy(css="div#picture-container>div:nth-child(1) div#desktop-buttons div.image-container>img")
-    private WebElement pictureContainer;
-    
     @FindBy(css = "div#picture-container>div:nth-child(1) div.pictureHolder")
     private WebElementFacade imageButton;
     
-   private static final String NthImage = "div#picture-container div:nth-child(randomValue) div#desktop-buttons div.buttons-holder button";
-    public void clickImageTab(){
+    private static final String NthImage = "div#picture-container div:nth-child(randomValue) div#desktop-buttons div.buttons-holder button";
+    
+    @FindBy(css="div#success>ul li.successmsg>ul li span#successMessage")
+    private WebElement successMessage;
+            
+    
+   public void clickImageTab(){
     	element(imageManagerTab).waitUntilVisible();
     	imageManagerTab.click();
     }
     
-  public void clickBrowse(){
-	  element(browseButton).waitUntilVisible();
-	  browseButton.click();
-  }
+
   public void uploadImage(String keyword){
 	  WebElement element= getDriver().findElement(By.name("image"));
 	  element.sendKeys(keyword);
   }
+    public String getSuccessMessage(){
+    	element(successMessage).waitUntilVisible();
+    	return successMessage.getText();
+    	
+    }
     
-  public void manageImage(String name){
-	  if(imageButton.isVisible()){
-		  Actions builder = new Actions(getDriver());
-		  builder.moveToElement(pictureContainer).perform();
-		  
-		  List<WebElement> buttonList = getDriver()
-					.findElements(By.cssSelector("div#desktop-buttons div.buttons-holder button"));
-		  
-		  for (WebElement webElement : buttonList) {
-				System.out.println("button:" + webElement.getAttribute("class") );
+	public void managerandomImage(String name) {
+		if(imageButton.isVisible()){
+		
+		List<WebElement> picturesList= getDriver().findElements(By.cssSelector("div#desktop-buttons div.image-container img"));
+		
+		Random r = new Random();
+		int randomValue = r.nextInt((picturesList.size()-1)+1)+1; 
 				
-				if (webElement.getAttribute("class").contains(name)) {
+		Actions builder = new Actions(getDriver());
+		builder.moveToElement(picturesList.get(randomValue-1)).perform();
+		String newValue = Integer.toString(randomValue);
+		
+		
+		List<WebElement> buttonList = getDriver()
+				.findElements(By.cssSelector(NthImage.replace("randomValue", newValue)));
+		
+			for (WebElement webElement : buttonList) {
+			System.out.println("button:" + webElement.getAttribute("class") );
+			
+			if (webElement.getAttribute("class").contains(name)) {
 
-			        webElement.click();
-					waitABit(3000);
-					break;
+		        webElement.click();
+				waitABit(3000);
+				break;
 
-				}
 			}
-		}else{
-			Assert.assertTrue("No image is displayed", imageButton.isVisible());
 		}
-	   
-	  
-  }
-  
-  
-  
-//	public void managerandomImage(String name) {
-//		if(imageButton.isVisible()){
-//		
-//		List<WebElement> picturesList= getDriver().findElements(By.cssSelector("div#desktop-buttons div.image-container img"));
-//		Random r = new Random();
-//		int randomValue = r.nextInt(picturesList.size()); 
-//		System.out.println(picturesList.size());
-//		System.out.println("Random value:" +randomValue);
-//		
-//		Actions builder = new Actions(getDriver());
-//		//builder.moveToElement(pictureContainer).perform();
-//		builder.moveToElement(picturesList.get(randomValue)).perform();
-//		String newValue = Integer.toString(randomValue);
-//		System.out.println(" Integer.toString(randomValue):" + newValue);
-//		
-//		List<WebElement> buttonList = getDriver()
-//				.findElements(By.cssSelector(NthImage.replace("randomValue", newValue)));
-//		
-//		System.out.println("Buttons list:" + buttonList.size());
-//		
-//		for (WebElement webElement : buttonList) {
-//			System.out.println("button:" + webElement.getAttribute("class") );
-//			
-//			if (webElement.getAttribute("class").contains(name)) {
-//
-//		        webElement.click();
-//				waitABit(3000);
-//				break;
-//
-//			}
-//		}
-//	}else{
-//		Assert.assertTrue("No image is displayed", imageButton.isVisible());
-//	}
-//    
-//}
+	}else{
+		Assert.assertTrue("No image is displayed", imageButton.isVisible());
+	}
+    
+}
 	}
