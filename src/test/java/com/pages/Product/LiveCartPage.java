@@ -1,5 +1,7 @@
 package com.pages.Product;
 
-public class LiveCartPage {
+import net.serenitybdd.core.pages.PageObject;
+
+public class LiveCartPage extends PageObject {
 
 }
