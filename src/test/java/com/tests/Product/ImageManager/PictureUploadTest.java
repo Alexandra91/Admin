@@ -1,4 +1,4 @@
-package com.tests.Product;
+package com.tests.Product.ImageManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.steps.AdminPanel.LogInSteps;
 import com.steps.Product.ImageManagerProductSteps;
+import com.steps.Product.PictureUploadSteps;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
@@ -14,9 +15,9 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="src/test/resources/tests/adminTabLinks.csv")
+@UseTestDataFrom(value="src/test/resources/tests/imageManagerLinks.csv")
 
-public class ImageManagerProductTest {
+public class PictureUploadTest {
 	
 	
 	@Managed(uniqueSession = true)
@@ -28,23 +29,28 @@ public class ImageManagerProductTest {
 	@Steps
 	public ImageManagerProductSteps imageManagerProductSteps;
 	
-	private String productLink, baseURL, user, pass;
+	@Steps
+	public PictureUploadSteps pictureUploadSteps;
+	
+	private String productLink, baseURL, user, pass,expectedMessage,documentPath;
 	
 	@Before
 	public void dataSetup() {
 		user = "admin";
 		pass = "admin123";
-			}
+		expectedMessage="The image has been successfully added(1)";
+				}
 	
 	@Test
-	public void tc003ImageManagerProductTest(){
+	public void tc001PictureUploadTest(){
 		
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
 		imageManagerProductSteps.navigateTo(productLink);
 		imageManagerProductSteps.clickImageManagerTab();
-		//imageManagerProductSteps.clickBrowseButton();
-		imageManagerProductSteps.uploadImage("e:\3.jpg");
-		//imageManagerProductSteps.manageImageButton("rotate-image-right");
+		pictureUploadSteps.loadDocument(documentPath);
+		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
+		imageManagerProductSteps.clickCloseButtonMessage();
+		imageManagerProductSteps.clickClose();
 		
 	}
 }
