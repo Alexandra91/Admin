@@ -15,7 +15,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="src/test/resources/tests/adminTabLinks.csv")
+@UseTestDataFrom(value="src/test/resources/tests/imageManagerLinks.csv")
 
 public class PictureUploadTest {
 	
@@ -38,9 +38,8 @@ public class PictureUploadTest {
 	public void dataSetup() {
 		user = "admin";
 		pass = "admin123";
-		expectedMessage="The image has been successfully added";
-		documentPath="e:\\3.jpg";
-			}
+		expectedMessage="The image has been successfully added(1)";
+				}
 	
 	@Test
 	public void tc001PictureUploadTest(){
@@ -49,8 +48,9 @@ public class PictureUploadTest {
 		imageManagerProductSteps.navigateTo(productLink);
 		imageManagerProductSteps.clickImageManagerTab();
 		pictureUploadSteps.loadDocument(documentPath);
-		//imageManagerProductSteps.manageImage("update-image");
 		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
+		imageManagerProductSteps.clickCloseButtonMessage();
+		imageManagerProductSteps.clickClose();
 		
 	}
 }

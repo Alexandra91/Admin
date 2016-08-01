@@ -13,7 +13,7 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-public class ImageManagerProductPage extends AbstractPage {
+public class ImageManagePage extends AbstractPage {
 	
 	@FindBy(css=".desktop-template a[data-fragment='imagemanager']")
 	private WebElement imageManagerTab;
@@ -21,10 +21,7 @@ public class ImageManagerProductPage extends AbstractPage {
 		
     @FindBy(css="#close-button")   
     private WebElement closeButton;
-    
-    @FindBy(id="image-cache")
-    private WebElement cacheCheckbox;
-    
+           
     @FindBy(css = "div#picture-container>div:nth-child(1) div.pictureHolder")
     private WebElementFacade imageButton;
     
@@ -32,6 +29,9 @@ public class ImageManagerProductPage extends AbstractPage {
     
     @FindBy(css="div#success>ul li.successmsg>ul li span#successMessage")
     private WebElement successMessage;
+    
+    @FindBy(css=" #success>ul li span:nth-child(3)")
+    private WebElement closeButtonMessage;
             
     
    public void clickImageTab(){
@@ -39,11 +39,7 @@ public class ImageManagerProductPage extends AbstractPage {
     	imageManagerTab.click();
     }
     
-
-  public void uploadImage(String keyword){
-	  WebElement element= getDriver().findElement(By.name("image"));
-	  element.sendKeys(keyword);
-  }
+ 
     public String getSuccessMessage(){
     	element(successMessage).waitUntilVisible();
     	return successMessage.getText();
@@ -67,8 +63,7 @@ public class ImageManagerProductPage extends AbstractPage {
 				.findElements(By.cssSelector(NthImage.replace("randomValue", newValue)));
 		
 			for (WebElement webElement : buttonList) {
-			System.out.println("button:" + webElement.getAttribute("class") );
-			
+						
 			if (webElement.getAttribute("class").contains(name)) {
 
 		        webElement.click();
@@ -82,4 +77,13 @@ public class ImageManagerProductPage extends AbstractPage {
 	}
     
 }
+	public void clickCloseMessageButton(){
+		element(closeButtonMessage).waitUntilVisible();
+		closeButtonMessage.click();
+	}
+	
+	public void clickCloseLink(){
+		element(closeButton).waitUntilVisible();
+		closeButton.click();
+	}
 	}

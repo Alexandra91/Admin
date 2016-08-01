@@ -2,7 +2,7 @@ package com.steps.Product;
 
 import org.junit.Assert;
 
-import com.pages.Product.ImageManagerProductPage;
+import com.pages.Product.ImageManagePage;
 import com.tools.AbstractSteps;
 
 import net.thucydides.core.annotations.Step;
@@ -10,7 +10,7 @@ import net.thucydides.core.annotations.Step;
 public class ImageManagerProductSteps extends AbstractSteps {
 	
 	private static final long serialVersionUID = 1L;
-	public ImageManagerProductPage imageManagerProductPage;
+	public ImageManagePage imageManagerProductPage;
 	
 	@Step
 	public void clickImageManagerTab(){
@@ -18,8 +18,13 @@ public class ImageManagerProductSteps extends AbstractSteps {
 	}
 	
 	@Step
-	public void uploadImage(String keyword){
-		imageManagerProductPage.upload(keyword);
+	public void clickCloseButtonMessage(){
+		imageManagerProductPage.clickCloseMessageButton();
+		
+	}
+	@Step
+	public void clickClose(){
+		imageManagerProductPage.clickCloseLink();
 	}
 	
 	@Step

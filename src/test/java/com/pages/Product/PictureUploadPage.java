@@ -24,7 +24,7 @@ public class PictureUploadPage extends AbstractPage {
 		browseButton.click();
 		File file = new File(documentPath);
 		uploadDocument(file.getAbsolutePath());
-		waitABit(2000);}
+		waitABit(5000);}
 	
 		private void uploadDocument(String path) {
 			// copy the path
