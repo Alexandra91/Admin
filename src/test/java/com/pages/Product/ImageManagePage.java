@@ -30,8 +30,14 @@ public class ImageManagePage extends AbstractPage {
     @FindBy(css="div#success>ul li.successmsg>ul li span#successMessage")
     private WebElement successMessage;
     
+    @FindBy(css="#error-container #error>ul  li.error-msg ul>li  #errorMessage")
+    private WebElement errorMessage;
+    
     @FindBy(css=" #success>ul li span:nth-child(3)")
-    private WebElement closeButtonMessage;
+    private WebElement closeButtonSuccessMessage;
+    
+    @FindBy(css="#error-container #error>ul  li.error-msg ul>li  span.notice-close")
+    private WebElement closeButtonErrorMessage;
             
     
    public void clickImageTab(){
@@ -44,6 +50,11 @@ public class ImageManagePage extends AbstractPage {
     	element(successMessage).waitUntilVisible();
     	return successMessage.getText();
     	
+    }
+    public String getErrorMessage(){
+    	element(errorMessage).waitUntilVisible();
+    	return errorMessage.getText();
+    	    	
     }
     
 	public void managerandomImage(String name) {
@@ -77,9 +88,16 @@ public class ImageManagePage extends AbstractPage {
 	}
     
 }
-	public void clickCloseMessageButton(){
-		element(closeButtonMessage).waitUntilVisible();
-		closeButtonMessage.click();
+	public void clickCloseSuccessMessageButton(){
+		element(closeButtonSuccessMessage).waitUntilVisible();
+		closeButtonSuccessMessage.click();
+		waitABit(5000);
+	}
+	
+	public void clickCloseErrorMessageButton(){
+		element(closeButtonErrorMessage).waitUntilVisible();
+		closeButtonErrorMessage.click();
+		waitABit(5000);
 	}
 	
 	public void clickCloseLink(){

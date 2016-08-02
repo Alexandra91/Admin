@@ -18,8 +18,16 @@ public class ImageManagerProductSteps extends AbstractSteps {
 	}
 	
 	@Step
-	public void clickCloseButtonMessage(){
-		imageManagerProductPage.clickCloseMessageButton();
+	public void clickCloseButtonSuccessMessage(){
+		imageManagerProductPage.clickCloseSuccessMessageButton();
+		
+		
+	}
+	
+	@Step
+	public void clickCloseButtonErrorMessage(){
+		imageManagerProductPage.clickCloseErrorMessageButton();
+		
 		
 	}
 	@Step
@@ -28,7 +36,7 @@ public class ImageManagerProductSteps extends AbstractSteps {
 	}
 	
 	@Step
-public void manageImage(String name){
+    public void manageImage(String name){
 		imageManagerProductPage.managerandomImage(name);
 	}
 	
@@ -36,11 +44,21 @@ public void manageImage(String name){
 		return imageManagerProductPage.getSuccessMessage();
 	}
 	
+	public String grabErrorMessage(){
+		return imageManagerProductPage.getErrorMessage();
+	
+	}
+	
 	public void verifySuccessMessage(String expectedMessage){
 		String actualMessage=grabSuccessMessage();
 		Assert.assertTrue("The message is not correct",actualMessage.contains(expectedMessage));
 	}
 	
-
+	public void verifyErrorMessage(String expectedMessage){
+		String actualMessage=grabErrorMessage();
+		Assert.assertTrue("The message is not correct",actualMessage.contains(expectedMessage));
+        
+	}
+	
 
 }

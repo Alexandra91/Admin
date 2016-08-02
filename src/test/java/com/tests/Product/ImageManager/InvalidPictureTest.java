@@ -15,11 +15,10 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="src/test/resources/tests/imageManagerPositiveLinks.csv")
+@UseTestDataFrom(value="src/test/resources/tests/imageManagerNegativeLinks.csv")
 
-public class PictureUploadTest {
-	
-	
+public class InvalidPictureTest {
+
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -32,25 +31,25 @@ public class PictureUploadTest {
 	@Steps
 	public PictureUploadSteps pictureUploadSteps;
 	
-	private String productLink, baseURL, user, pass,expectedMessage,documentPath;
+	private String productLink, baseURL, user, pass,expectedMessage,documentPath2;
 	
 	@Before
 	public void dataSetup() {
 		user = "admin";
 		pass = "admin123";
-		expectedMessage="The image has been successfully added";
-				}
+		expectedMessage="Invalid file selected for upload";}
 	
 	@Test
-	public void tc001PictureUploadPositiveTest(){
+	public void tc004PictureUploadNegativeTest(){
 		
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
 		imageManagerProductSteps.navigateTo(productLink);
 		imageManagerProductSteps.clickImageManagerTab();
-		pictureUploadSteps.loadDocument(documentPath);
-		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
-		imageManagerProductSteps.clickCloseButtonSuccessMessage();
+		pictureUploadSteps.loadDocument(documentPath2);
+		imageManagerProductSteps.verifyErrorMessage(expectedMessage);
+		imageManagerProductSteps.clickCloseButtonErrorMessage();
 		imageManagerProductSteps.clickClose();
 		
 	}
+	
 }

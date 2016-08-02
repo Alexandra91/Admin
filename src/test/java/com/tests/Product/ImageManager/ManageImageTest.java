@@ -28,72 +28,55 @@ public class ManageImageTest {
 	@Steps
 	public ImageManagerProductSteps imageManagerProductSteps;
 	
-private String productLink, baseURL, user, pass,expectedMessage;
+private String productLink, baseURL, user, pass,expectedMessage1,expectedMessage2,expectedMessage3,expectedMessage4;
 	
 	@Before
 	public void dataSetup() {
 		user = "admin";
 		pass = "admin123";
-		expectedMessage="The image has been successfully removed";
+		expectedMessage1="The image has been successfully removed";
+		expectedMessage2="The image has been rotated to the left and the cache was flushed";
+		expectedMessage3="The image has been rotated to the right and the cache was flushed";
+		expectedMessage4="The image has been updated and the cache was flushed";
 				}
 	
 	@Test
-	public void tc002ManageImageTest(){
+    public void tc003ManageImageDeleteTest(){
+    logInSteps.login_magentoAdmin(baseURL, user, pass);
+	imageManagerProductSteps.navigateTo(productLink);
+	imageManagerProductSteps.clickImageManagerTab();
+	imageManagerProductSteps.manageImage("delete-image");
+	imageManagerProductSteps.verifySuccessMessage(expectedMessage1);
+}
+	
+//	@Test
+	public void tc003ManageImageRotateLeftTest(){
+	logInSteps.login_magentoAdmin(baseURL, user, pass);
+	imageManagerProductSteps.navigateTo(productLink);
+	imageManagerProductSteps.clickImageManagerTab();
+	imageManagerProductSteps.manageImage("rotate-image-left");
+	imageManagerProductSteps.verifySuccessMessage(expectedMessage2);
+}
+	
+
+//	@Test
+	public void tc003ManageImageRotateRightTest(){
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
 		imageManagerProductSteps.navigateTo(productLink);
 		imageManagerProductSteps.clickImageManagerTab();
-		imageManagerProductSteps.manageImage("delete-image");
-		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
+		imageManagerProductSteps.manageImage("rotate-image-right");
+		imageManagerProductSteps.verifySuccessMessage(expectedMessage3);
 }
 	
-//	@Before
-//	public void dataSetup() {
-//		user = "admin";
-//		pass = "admin123";
-//		expectedMessage="The image has been rotated to the left and the cache was flushed";
-//				}
-//	
+
 //	@Test
-//	public void tc002ManageImageTest(){
-//		logInSteps.login_magentoAdmin(baseURL, user, pass);
-//		imageManagerProductSteps.navigateTo(productLink);
-//		imageManagerProductSteps.clickImageManagerTab();
-//		imageManagerProductSteps.manageImage("rotate-image-left");
-//		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
-//}
-	
-	
-//	@Before
-//	public void dataSetup() {
-//		user = "admin";
-//		pass = "admin123";
-//		expectedMessage="The image has been rotated to the right and the cache was flushed";
-//				}
-//	
-//	@Test
-//	public void tc002ManageImageTest(){
-//		logInSteps.login_magentoAdmin(baseURL, user, pass);
-//		imageManagerProductSteps.navigateTo(productLink);
-//		imageManagerProductSteps.clickImageManagerTab();
-//		imageManagerProductSteps.manageImage("rotate-image-right");
-//		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
-//}
-	
-//	@Before
-//	public void dataSetup() {
-//		user = "admin";
-//		pass = "admin123";
-//		expectedMessage="The image has been updated and the cache was flushed";
-//				}
-//	
-//	@Test
-//	public void tc002ManageImageTest(){
-//		logInSteps.login_magentoAdmin(baseURL, user, pass);
-//		imageManagerProductSteps.navigateTo(productLink);
-//		imageManagerProductSteps.clickImageManagerTab();
-//		imageManagerProductSteps.manageImage("update-image");
-//		imageManagerProductSteps.verifySuccessMessage(expectedMessage);
-//}
+	public void tc003ManageImageUpdateTest(){
+		logInSteps.login_magentoAdmin(baseURL, user, pass);
+		imageManagerProductSteps.navigateTo(productLink);
+		imageManagerProductSteps.clickImageManagerTab();
+		imageManagerProductSteps.manageImage("update-image");
+		imageManagerProductSteps.verifySuccessMessage(expectedMessage4);
+}
 	
 
 
