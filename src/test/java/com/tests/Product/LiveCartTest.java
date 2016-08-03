@@ -26,7 +26,7 @@ public class LiveCartTest {
 	@Steps
 	public LiveCartSteps liveCart;
 
-	private String baseURL, username, password,productLink;
+	private String baseURL, username, password,productLink,before;
 
 	@Before
 	public void testDataSetup() {
@@ -56,10 +56,11 @@ public class LiveCartTest {
 		logIn.login_magentoAdmin(baseURL, username, password);
 		liveCart.navigateTo(productLink);
 		liveCart.clickLiveCart();
-		liveCart.verifyShoppingCartsNumber();
+		before = liveCart.findShoppingCartsNumber();
 		liveCart.clickAddToCart();
 		liveCart.navigateTo(productLink);
 		liveCart.clickLiveCart();
+		liveCart.verifyShoppingCartsNumber(before);
 		
 		
 	}

@@ -15,10 +15,15 @@ public class LiveCartSteps extends AbstractSteps {
 	public void clickLiveCart() {
 		liveCartPage.pressLiveCartTab();
 	}
+
+	@Step
+	public String findShoppingCartsNumber(){
+		return liveCartPage.findNumber();
+	}
 	
 	@Step
-	public void verifyShoppingCartsNumber(){
-		liveCartPage.checkShoppingCartsNumber();
+	public void verifyShoppingCartsNumber(String before){
+		liveCartPage.checkShoppingCartsNumber(before);
 	}
 	
 	@Step
