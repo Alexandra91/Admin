@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.steps.AdminPanel.LogInSteps;
-import com.steps.Product.ImageManagerProductSteps;
-import com.steps.Product.PictureUploadSteps;
+import com.steps.Product.ImageManager.ImageManagerSteps;
+import com.steps.Product.ImageManager.PictureUploadSteps;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
@@ -27,7 +27,7 @@ public class DisallowedPictureTest {
 	public LogInSteps logInSteps;
 	
 	@Steps
-	public ImageManagerProductSteps imageManagerProductSteps;
+	public ImageManagerSteps imageManagerProductSteps;
 	
 	@Steps
 	public PictureUploadSteps pictureUploadSteps;

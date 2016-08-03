@@ -1,51 +1,52 @@
-package com.steps.Product;
+package com.steps.Product.ImageManager;
 
 import org.junit.Assert;
 
-import com.pages.Product.ImageManagePage;
+import com.pages.Product.ImageManager.ImageManagerPage;
 import com.tools.AbstractSteps;
 
 import net.thucydides.core.annotations.Step;
 
-public class ImageManagerProductSteps extends AbstractSteps {
+public class ImageManagerSteps extends AbstractSteps {
 	
 	private static final long serialVersionUID = 1L;
-	public ImageManagePage imageManagerProductPage;
+	public ImageManagerPage imageManagerPage;
 	
 	@Step
 	public void clickImageManagerTab(){
-		imageManagerProductPage.clickImageTab();
+		imageManagerPage.clickImageTab();
 	}
 	
 	@Step
 	public void clickCloseButtonSuccessMessage(){
-		imageManagerProductPage.clickCloseSuccessMessageButton();
+		imageManagerPage.clickCloseSuccessMessageButton();
 		
 		
 	}
 	
+	
 	@Step
 	public void clickCloseButtonErrorMessage(){
-		imageManagerProductPage.clickCloseErrorMessageButton();
+		imageManagerPage.clickCloseErrorMessageButton();
 		
 		
 	}
 	@Step
 	public void clickClose(){
-		imageManagerProductPage.clickCloseLink();
+		imageManagerPage.clickCloseLink();
 	}
 	
 	@Step
     public void manageImage(String name){
-		imageManagerProductPage.managerandomImage(name);
+		imageManagerPage.managerandomImage(name);
 	}
 	
 	public String grabSuccessMessage(){
-		return imageManagerProductPage.getSuccessMessage();
+		return imageManagerPage.getSuccessMessage();
 	}
 	
 	public String grabErrorMessage(){
-		return imageManagerProductPage.getErrorMessage();
+		return imageManagerPage.getErrorMessage();
 	
 	}
 	
@@ -59,6 +60,7 @@ public class ImageManagerProductSteps extends AbstractSteps {
 		Assert.assertTrue("The message is not correct",actualMessage.contains(expectedMessage));
         
 	}
+	
 	
 
 }

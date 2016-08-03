@@ -1,6 +1,6 @@
-package com.steps.Product;
+package com.steps.Product.ImageManager;
 
-import com.pages.Product.PictureUploadPage;
+import com.pages.Product.ImageManager.PictureUploadPage;
 import com.tools.AbstractSteps;
 
 import net.thucydides.core.annotations.Step;

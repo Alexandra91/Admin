@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.steps.AdminPanel.LogInSteps;
-import com.steps.Product.ImageManagerProductSteps;
-import com.steps.Product.PictureUploadSteps;
+import com.steps.Product.ImageManager.ImageManagerSteps;
+import com.steps.Product.ImageManager.PictureUploadSteps;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
@@ -26,7 +26,7 @@ public class InvalidPictureTest {
 	public LogInSteps logInSteps;
 	
 	@Steps
-	public ImageManagerProductSteps imageManagerProductSteps;
+	public ImageManagerSteps imageManagerSteps;
 	
 	@Steps
 	public PictureUploadSteps pictureUploadSteps;
@@ -43,12 +43,12 @@ public class InvalidPictureTest {
 	public void tc004PictureUploadNegativeTest(){
 		
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
-		imageManagerProductSteps.navigateTo(productLink);
-		imageManagerProductSteps.clickImageManagerTab();
+		imageManagerSteps.navigateTo(productLink);
+		imageManagerSteps.clickImageManagerTab();
 		pictureUploadSteps.loadDocument(documentPath2);
-		imageManagerProductSteps.verifyErrorMessage(expectedMessage);
-		imageManagerProductSteps.clickCloseButtonErrorMessage();
-		imageManagerProductSteps.clickClose();
+		imageManagerSteps.verifyErrorMessage(expectedMessage);
+		imageManagerSteps.clickCloseButtonErrorMessage();
+		imageManagerSteps.clickClose();
 		
 	}
 	

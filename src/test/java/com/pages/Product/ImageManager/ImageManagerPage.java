@@ -1,4 +1,4 @@
-package com.pages.Product;
+package com.pages.Product.ImageManager;
 
 import java.util.List;
 import java.util.Random;
@@ -13,12 +13,11 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-public class ImageManagePage extends AbstractPage {
+public class ImageManagerPage extends AbstractPage {
 	
 	@FindBy(css=".desktop-template a[data-fragment='imagemanager']")
 	private WebElement imageManagerTab;
-	
-		
+			
     @FindBy(css="#close-button")   
     private WebElement closeButton;
            
@@ -38,7 +37,8 @@ public class ImageManagePage extends AbstractPage {
     
     @FindBy(css="#error-container #error>ul  li.error-msg ul>li  span.notice-close")
     private WebElement closeButtonErrorMessage;
-            
+    
+   
     
    public void clickImageTab(){
     	element(imageManagerTab).waitUntilVisible();
@@ -104,4 +104,7 @@ public class ImageManagePage extends AbstractPage {
 		element(closeButton).waitUntilVisible();
 		closeButton.click();
 	}
+	
+	
+	
 	}

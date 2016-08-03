@@ -1,4 +1,4 @@
-package com.pages.Product;
+package com.pages.Product.ImageManager;
 
 import java.awt.AWTException;
 import java.awt.Robot;

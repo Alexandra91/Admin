@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.steps.AdminPanel.LogInSteps;
-import com.steps.Product.ImageManagerProductSteps;
+import com.steps.Product.ImageManager.ImageManagerSteps;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
@@ -14,7 +14,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="src/test/resources/tests/imageManagerLinks.csv")
+@UseTestDataFrom(value="src/test/resources/tests/imageManagerPositiveLinks.csv")
 
 public class ManageImageTest {
 
@@ -26,7 +26,7 @@ public class ManageImageTest {
 	public LogInSteps logInSteps;
 	
 	@Steps
-	public ImageManagerProductSteps imageManagerProductSteps;
+	public ImageManagerSteps imageManagerSteps;
 	
 private String productLink, baseURL, user, pass,expectedMessage1,expectedMessage2,expectedMessage3,expectedMessage4;
 	
@@ -43,39 +43,39 @@ private String productLink, baseURL, user, pass,expectedMessage1,expectedMessage
 	@Test
     public void tc003ManageImageDeleteTest(){
     logInSteps.login_magentoAdmin(baseURL, user, pass);
-	imageManagerProductSteps.navigateTo(productLink);
-	imageManagerProductSteps.clickImageManagerTab();
-	imageManagerProductSteps.manageImage("delete-image");
-	imageManagerProductSteps.verifySuccessMessage(expectedMessage1);
+	imageManagerSteps.navigateTo(productLink);
+	imageManagerSteps.clickImageManagerTab();
+	imageManagerSteps.manageImage("delete-image");
+	imageManagerSteps.verifySuccessMessage(expectedMessage1);
 }
 	
 //	@Test
 	public void tc003ManageImageRotateLeftTest(){
 	logInSteps.login_magentoAdmin(baseURL, user, pass);
-	imageManagerProductSteps.navigateTo(productLink);
-	imageManagerProductSteps.clickImageManagerTab();
-	imageManagerProductSteps.manageImage("rotate-image-left");
-	imageManagerProductSteps.verifySuccessMessage(expectedMessage2);
+	imageManagerSteps.navigateTo(productLink);
+	imageManagerSteps.clickImageManagerTab();
+	imageManagerSteps.manageImage("rotate-image-left");
+	imageManagerSteps.verifySuccessMessage(expectedMessage2);
 }
 	
 
 //	@Test
 	public void tc003ManageImageRotateRightTest(){
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
-		imageManagerProductSteps.navigateTo(productLink);
-		imageManagerProductSteps.clickImageManagerTab();
-		imageManagerProductSteps.manageImage("rotate-image-right");
-		imageManagerProductSteps.verifySuccessMessage(expectedMessage3);
+		imageManagerSteps.navigateTo(productLink);
+		imageManagerSteps.clickImageManagerTab();
+		imageManagerSteps.manageImage("rotate-image-right");
+		imageManagerSteps.verifySuccessMessage(expectedMessage3);
 }
 	
 
 //	@Test
 	public void tc003ManageImageUpdateTest(){
 		logInSteps.login_magentoAdmin(baseURL, user, pass);
-		imageManagerProductSteps.navigateTo(productLink);
-		imageManagerProductSteps.clickImageManagerTab();
-		imageManagerProductSteps.manageImage("update-image");
-		imageManagerProductSteps.verifySuccessMessage(expectedMessage4);
+		imageManagerSteps.navigateTo(productLink);
+		imageManagerSteps.clickImageManagerTab();
+		imageManagerSteps.manageImage("update-image");
+		imageManagerSteps.verifySuccessMessage(expectedMessage4);
 }
 	
 
