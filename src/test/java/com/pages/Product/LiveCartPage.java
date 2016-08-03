@@ -17,8 +17,8 @@ public class LiveCartPage extends PageObject {
 
 	@FindBy(css = "p.live-info.large")
 	private WebElement shoppingCarts;
-	
-	@FindBy(css=".btn-cart")
+
+	@FindBy(css = ".btn-cart")
 	private WebElement addToCartButton;
 
 	public void pressLiveCartTab() {
@@ -27,24 +27,35 @@ public class LiveCartPage extends PageObject {
 		liveCart.click();
 	}
 
-	public void pressAddToCart(){
-	addToCartButton.click();	
+	public void pressAddToCart() {
+		addToCartButton.click();
 	}
-	
-	public void checkShoppingCartsNumber(){
-		String result=element(shoppingCarts).getText();
-		int length = result.length();
-	    String number = "";
-	    for (int i = 0; i < length; i++) {
-	        Character character = result.charAt(i);
-	        if (Character.isDigit(character)) {
-	            number += character;
-	        }
-	    }
-		System.out.println(shoppingCarts.getText()+ number);
-		
+
+	public String findNumber() {
+		String text = element(shoppingCarts).getText();
+		int length = text.length();
+		String number = "";
+		for (int i = 0; i < length; i++) {
+			Character character = text.charAt(i);
+			if (Character.isDigit(character)) {
+				number += character;
+			}
+		}
+		System.out.println("Number of shopping carts where the product is currently added to: "+ number);
+		return number;
 	}
-	
+
+	public void checkShoppingCartsNumber(String before) {
+
+		Integer nr = Integer.parseInt(findNumber());
+		Integer result = Integer.parseInt(before) + 1;
+		boolean isEqual = false;
+		if (result.equals(nr)) {
+			isEqual = true;
+		}
+		Assert.assertTrue("Number doesn't match", isEqual);
+	}
+
 	public void checkPageHeader(String text) {
 		boolean found = false;
 		element(pageHeader).waitUntilVisible();
@@ -56,8 +67,8 @@ public class LiveCartPage extends PageObject {
 	}
 
 	public void checkPageLogo() {
-		Assert.assertTrue("Tab logo doesn't match", getDriver()
-				.findElement(By.cssSelector(".logo-holder")).isDisplayed());
+		Assert.assertTrue("Tab logo doesn't match",
+				getDriver().findElement(By.cssSelector(".logo-holder")).isDisplayed());
 		System.out.println("Logo is displayed");
 	}
 
