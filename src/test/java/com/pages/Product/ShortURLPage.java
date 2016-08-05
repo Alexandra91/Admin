@@ -1,5 +1,7 @@
 package com.pages.Product;
 
-public class ShortURLPage {
+import com.tools.AbstractPage;
+
+public class ShortURLPage extends AbstractPage {
 
 }

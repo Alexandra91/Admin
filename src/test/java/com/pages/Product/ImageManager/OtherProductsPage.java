@@ -28,8 +28,10 @@ public class OtherProductsPage extends AbstractPage {
 
 	public String manageRandomLink() {
 		String link = "";
-		if (otherProductLink.isVisible()) {
+		System.out.println("here");
 			List<WebElement> otherProductsList = getDriver().findElements(By.cssSelector("div.no-picture-products>a"));
+			System.out.println("here");
+			if (otherProductsList.size()>0) {
 			Random r = new Random();
 			int randomValue = r.nextInt((otherProductsList.size() - 1) + 1) ;
 			System.out.println("Random value:"+randomValue);
