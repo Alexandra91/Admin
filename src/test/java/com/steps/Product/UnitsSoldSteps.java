@@ -1,6 +1,6 @@
 package com.steps.Product;
 
-import com.pages.Product.UnitsSoldPage;
+import com.pages.Product.UnitsSold.UnitsSoldPage;
 import com.tools.AbstractSteps;
 
 import net.thucydides.core.annotations.Step;

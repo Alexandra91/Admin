@@ -1,4 +1,4 @@
-package com.pages.Product;
+package com.pages.Product.UnitsSold;
 
 import java.util.List;
 import java.util.Random;
